@@ -49,7 +49,7 @@ export default function App() {
                     </Button>
                 </ToolBar>
             </AppBar>
-            <Grid container justify='center'>
+            <Grid container alignItems='center' justify='center'>
                 <Card className={classes.rootCard} variant='elevation'>
                     <CardContent>
                         <Typography className={classes.titleCard} color="textSecondary" gutterBottom>
