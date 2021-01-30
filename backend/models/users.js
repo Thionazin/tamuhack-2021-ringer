@@ -4,7 +4,6 @@ var userSchema = mongoose.Schema({
     password : String,
     name : String,
     description : String,
-    uid : String,
     game_list : [String],
     tag_list : [String],
     declined_ids : [String],
