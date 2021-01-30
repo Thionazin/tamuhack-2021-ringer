@@ -1,2 +1,2 @@
 # tamuhack-2021
-Our tamuhack 2021 project
+MERN stack webapp that allows gamers to connect with each other.
