@@ -63,6 +63,10 @@ app.post("/login", (req, res, next) => {
     }
   })(req, res, next);
 });
+app.get("/logout", (req, res) => {
+  req.logout();
+  res.redirect("/");
+})
 app.post("/register", (req, res) => {
   User.findOne({ username: req.body.username }, async (err, doc) => {
     if (err) throw err;
@@ -116,7 +120,12 @@ app.post("/update_profile", (req, res) => {
 
 //connecting with others routes
 app.get("/get_a_profile", (req, res) => {
-
+  User.find({} , (err, users) => {
+    if(err) console.log(err);
+    users.map(user => {
+      //Do somethign with the user
+    })
+  })
 });
 
 app.post("/swipe_yes", (req, res) => {
