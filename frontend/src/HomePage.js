@@ -1,77 +1,54 @@
-import React from 'react';
+import React,{useState} from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import ToolBar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
-import Card from '@material-ui/core/Card';
-import CardActions from '@material-ui/core/CardActions';
-import CardContent from '@material-ui/core/CardContent';
-import Grid from '@material-ui/core/Grid'
+import { Link } from 'react-router-dom'
+import Axios from 'axios'
 
 
 const useStyles = makeStyles((theme) => ({
-    rootAppBar: {
+    root: {
         flexGrow: 1,
     },
-    rootCard: {
-        maxWidth: 500,
+    menuButton: {
+        marginRight: theme.spacing(2),
     }, 
-    titleAppBar: {
+    title: {
         flexGrow: 1,
-    },
-    titleCard: {
-        fontSize: 14,
-    },
-    bullet: {
-        display: 'inline-bock',
-        margin: '0 2px', 
-        transform: 'scale(0.8)',
-    },
-    pos: {
-        marginBottom: 12,
     },
 }));
 
-export default function App() {
-    const classes = useStyles();
-    const bull = <span className={classes.bullet}>•</span>;
+function ButtonAppBar() {
+    const [data, setData] = useState(null);
+    const getUser = () => {
+        Axios({
+          method: "GET",
+          withCredentials: true,
+          url: "http://localhost:4000/get_self",
+        }).then((res) => {
+          setData(res.data);
+          console.log(res.data);
+        });
+    };
 
-    return(
-        <div>
-            <AppBar position="static" className={classes.rootAppBar}>
-                <ToolBar>
-                    <Typography variant="h6" className={classes.titleAppBar}>
-                        Ringer
-                    </Typography>
-                    <Button color="inherit">
-                        Login
-                    </Button>
-                </ToolBar>
-            </AppBar>
-            <Grid container justify='center'>
-                <Card className={classes.rootCard} variant='elevation'>
-                    <CardContent>
-                        <Typography className={classes.titleCard} color="textSecondary" gutterBottom>
-                            word of the day
-                        </Typography>
-                        <Typography variant="h5" component="h2">
-                            be{bull}nev{bull}o{bull}lent
-                        </Typography>
-                        <Typography className={classes.pos} color="textSecondary">
-                            adjective
-                        </Typography>
-                        <Typography variant="body2" component="p">
-                            well meaning and kindl.
-                            <br />
-                            {'"a benovelent smile"'}
-                        </Typography>
-                    </CardContent>
-                    <CardActions>
-                        <Button size="small">Learn More</Button>
-                    </CardActions>
-                </Card>
-            </Grid>
-        </div>
-    );
+    const classes = useStyles();
+
+    return (<div className={classes.root}>
+        <AppBar position="static">
+            <ToolBar>
+                <Typography variant="h6" className={classes.title}>
+                Ringer
+                </Typography>
+                <Button color="inherit">
+                <Link to='/login'>Login</Link>
+                </Button>
+                <Button onClick={getUser}>Get User</Button>
+            </ToolBar>
+        </AppBar>
+    </div>);
 };
+
+export default ButtonAppBar
+
