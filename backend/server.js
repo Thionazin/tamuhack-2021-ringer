@@ -10,7 +10,7 @@ const bodyParser = require("body-parser");
 const app = express();
 const User = require("./models/users");
 //----------------------------------------- END OF IMPORTS---------------------------------------------------
-/*
+
 mongoose.connect(
   "mongodb+srv://dbUser:secretcode@ringerdb.nqpsv.mongodb.net/ringerdb?retryWrites=true&w=majority",
   {
@@ -21,7 +21,6 @@ mongoose.connect(
     console.log("Mongoose Is Connected");
   }
 );
-*/
 
 // Middleware
 app.use(bodyParser.json());

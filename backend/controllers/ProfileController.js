@@ -3,8 +3,9 @@ const Users = require('../models/users');
 const bcrypt = require("bcryptjs");
 const passportLocal = require("passport-local").Strategy;
 
+/*
 mongoose.connect(
-    "mongodb+srv://dbUser:<password>@ringerdb.nqpsv.mongodb.net/<dbname>?retryWrites=true&w=majority",
+    "mongodb+srv://dbUser:<secretcode>@ringerdb.nqpsv.mongodb.net/<ringerdb>?retryWrites=true&w=majority",
     {
         useNewUrlParser: true,
         useUnifiedTopology: true,
@@ -13,6 +14,7 @@ mongoose.connect(
         console.log("Mongoose Is Connected");
     }
 );
+*/
 
 module.exports = {
     async register (req, res) {
