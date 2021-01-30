@@ -47,6 +47,9 @@ require("./passportConfig")(passport);
 
 // Routes
 
+// This is not best practice, but we don't have time to make it good practice.
+
+//profile routes
 app.post("/login", (req, res, next) => {
   passport.authenticate("local", (err, user, info) => {
     if (err) throw err;
@@ -108,6 +111,63 @@ app.post("/update_profile", (req, res) => {
     });
   } else {
     res.send("Error, you do not have permission to edit this profile.")
+  }
+});
+
+//connecting with others routes
+app.get("/get_a_profile", (req, res) => {
+
+});
+
+app.post("/swipe_yes", (req, res) => {
+  if(req.user) {
+    User.findOne({ username: req.body.otheruser }, async (err, doc) => {
+      if (err) throw err;
+      if (!doc) res.send("User doesn't exist. You should never see this message");
+      if (doc) {
+        if (doc.request_ids.contain(req.user.username)) {
+          doc.connected_ids.push(req.user.username);
+          User.findOne({username: req.user.username}, async (err, profile) => {
+            if (err) throw err;
+            if (!profile) res.send("User doesn't exist. This case should never happen.");
+            if (profile) {
+              profile.connected_ids.push(doc.username);
+              profile.save().catch(err => console.log(err));
+              res.send("Matched")
+            }
+          });
+          doc.save().catch(err => console.log(err));
+        } else {
+          User.findOne({ username: req.user.username }, async (err, doc) => {
+            if (err) throw err;
+            if (!doc) res.send("User doesn't exist");
+            if (doc) {
+              doc.request_ids.push(req.body.otheruser);
+              doc.save().catch(err => console.log(err));
+              res.send("Swiped yes")
+            }
+          });
+        }
+      }
+    });
+  } else {
+    res.send("Error, you do not have permission to swipe.")
+  }
+});
+
+app.post("/swipe_no", (req, res) => {
+  if(req.user) {
+    User.findOne({ username: req.user.username }, async (err, doc) => {
+      if (err) throw err;
+      if (!doc) res.send("User doesn't exist");
+      if (doc) {
+        doc.declined_ids.push(req.body.otheruser);
+        doc.save().catch(err => console.log(err));
+        res.send("Swiped no")
+      }
+    });
+  } else {
+    res.send("Error, you do not have permission to swipe.")
   }
 });
 
