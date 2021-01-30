@@ -10,6 +10,7 @@ const bodyParser = require("body-parser");
 const app = express();
 const User = require("./models/users");
 //----------------------------------------- END OF IMPORTS---------------------------------------------------
+/*
 mongoose.connect(
   "mongodb+srv://dbUser:secretcode@ringerdb.nqpsv.mongodb.net/ringerdb?retryWrites=true&w=majority",
   {
@@ -20,6 +21,7 @@ mongoose.connect(
     console.log("Mongoose Is Connected");
   }
 );
+*/
 
 // Middleware
 app.use(bodyParser.json());
@@ -45,6 +47,9 @@ require("./passportConfig")(passport);
 //----------------------------------------- END OF MIDDLEWARE---------------------------------------------------
 
 // Routes
+
+require('./routes')(app)
+
 app.post("/login", (req, res, next) => {
   passport.authenticate("local", (err, user, info) => {
     if (err) throw err;
@@ -58,6 +63,7 @@ app.post("/login", (req, res, next) => {
     }
   })(req, res, next);
 });
+/*
 app.post("/register", (req, res) => {
   User.findOne({ username: req.body.username }, async (err, doc) => {
     if (err) throw err;
@@ -74,9 +80,12 @@ app.post("/register", (req, res) => {
     }
   });
 });
+
 app.get("/user", (req, res) => {
   res.send(req.user); // The req.user stores the entire user that has been authenticated inside of it.
 });
+*/
+
 //----------------------------------------- END OF ROUTES---------------------------------------------------
 //Start Server
 app.listen(4000, () => {
