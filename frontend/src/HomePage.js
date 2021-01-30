@@ -7,6 +7,7 @@ import Button from '@material-ui/core/Button';
 import Card from '@material-ui/core/Card';
 import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
+import Grid from '@material-ui/core/Grid'
 
 
 const useStyles = makeStyles((theme) => ({
@@ -14,7 +15,7 @@ const useStyles = makeStyles((theme) => ({
         flexGrow: 1,
     },
     rootCard: {
-        minWidth: 275,
+        maxWidth: 500,
     }, 
     titleAppBar: {
         flexGrow: 1,
@@ -39,36 +40,38 @@ export default function App() {
     return(
         <div>
             <AppBar position="static" className={classes.rootAppBar}>
-            <ToolBar>
-                <Typography variant="h6" className={classes.titleAppBar}>
-                Ringer
-                </Typography>
-                <Button color="inherit">
-                Login
-                </Button>
-            </ToolBar>
+                <ToolBar>
+                    <Typography variant="h6" className={classes.titleAppBar}>
+                        Ringer
+                    </Typography>
+                    <Button color="inherit">
+                        Login
+                    </Button>
+                </ToolBar>
             </AppBar>
-            <Card className={classes.rootCard}>
-                <CardContent>
-                    <Typography className={classes.titleCard} color="textSecondary" gutterBottom>
-                        word of the day
-                    </Typography>
-                    <Typography variant="h5" component="h2">
-                        be{bull}nev{bull}o{bull}lent
-                    </Typography>
-                    <Typography className={classes.pos} color="textSecondary">
-                        adjective
-                    </Typography>
-                    <Typography variant="body2" component="p">
-                        well meaning and kindl.
-                        <br />
-                        {'"a benovelent smile"'}
-                    </Typography>
-                </CardContent>
-                <CardActions>
-                    <Button size="small">Learn More</Button>
-                </CardActions>
-            </Card>
+            <Grid container justify='center'>
+                <Card className={classes.rootCard} variant='elevation'>
+                    <CardContent>
+                        <Typography className={classes.titleCard} color="textSecondary" gutterBottom>
+                            word of the day
+                        </Typography>
+                        <Typography variant="h5" component="h2">
+                            be{bull}nev{bull}o{bull}lent
+                        </Typography>
+                        <Typography className={classes.pos} color="textSecondary">
+                            adjective
+                        </Typography>
+                        <Typography variant="body2" component="p">
+                            well meaning and kindl.
+                            <br />
+                            {'"a benovelent smile"'}
+                        </Typography>
+                    </CardContent>
+                    <CardActions>
+                        <Button size="small">Learn More</Button>
+                    </CardActions>
+                </Card>
+            </Grid>
         </div>
     );
 };
