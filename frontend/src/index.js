@@ -1,7 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import Homepage from './Homepage';
 import reportWebVitals from './reportWebVitals';
 import RegisterPage from './RegisterPage';
 import LoginPage from './LoginPage'
