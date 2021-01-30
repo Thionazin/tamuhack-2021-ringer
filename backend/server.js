@@ -70,14 +70,45 @@ app.post("/register", (req, res) => {
       const newUser = new User({
         username: req.body.username,
         password: hashedPassword,
+        name : req.body.name,
+        description : req.body.description,
+        game_list : req.body.game_list,
+        tag_list : req.body.tag_list,
+        declined_ids : [""],
+        request_ids : [""],
+        connected_ids : [""]
       });
       await newUser.save();
       res.send("User Created");
     }
   });
 });
-app.get("/user", (req, res) => {
+app.get("/get_self", (req, res) => {
   res.send(req.user); // The req.user stores the entire user that has been authenticated inside of it.
+});
+app.post("/update_profile", (req, res) => {
+  if(req.user) {
+    User.findOne({ username: req.body.username }, async (err, doc) => {
+      if (err) throw err;
+      if (!doc) res.send("User doesn't exist");
+      if (doc) {
+        const hashedPassword = await bcrypt.hash(req.body.password, 10);
+        doc.username = req.body.username;
+        doc.password = hashedPassword;
+        doc.name = req.body.name;
+        doc.description = req.body.description;
+        doc.game_list = req.body.game_list;
+        doc.tag_list = req.body.tag_list;
+        doc.declined_ids = req.body.declined_ids;
+        doc.request_ids = req.body.request_ids;
+        doc.connected_ids = req.body.connected_ids;
+        doc.save().catch(err => console.log(err));
+        res.send("Profile Updated");
+      }
+    });
+  } else {
+    res.send("Error, you do not have permission to edit this profile.")
+  }
 });
 
 //----------------------------------------- END OF ROUTES---------------------------------------------------
