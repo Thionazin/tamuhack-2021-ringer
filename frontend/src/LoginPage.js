@@ -63,7 +63,7 @@ function LoginPage() {
       
       if (res.data == "Successfully Authenticated") {
         console.log(res)
-        history.push('/')
+        history.push('/home')
       }
       else {
         console.log('login failed')
