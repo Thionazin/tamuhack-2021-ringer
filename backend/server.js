@@ -146,7 +146,7 @@ app.get("/getRandomProfile", (req,res)=>{
 })
 app.post("/swipe_yes", (req, res) => {
   if(req.user) {
-    User.findOne({ username: req.body.otheruser }, async (err, doc) => {
+    User.findOne({ username: req.body.otheruser.username }, async (err, doc) => {
       if (err) throw err;
       if (!doc) res.send("User doesn't exist. You should never see this message");
       if (doc) {
