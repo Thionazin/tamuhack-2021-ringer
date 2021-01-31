@@ -18,7 +18,7 @@ import { useHistory } from "react-router-dom";
 import { MenuItem } from "@material-ui/core";
 import Select from 'react-select'
 import SelectGamesDropDown from './SelectGamesDropDown'
-
+let arr = []
 function RegisterPage() {
   const [registerUsername, setRegisterUsername] = useState("");
   const [registerPassword, setRegisterPassword] = useState("");
@@ -86,18 +86,23 @@ function RegisterPage() {
       margin: theme.spacing(3, 0, 2),
     },
   }));
-  let arr = []
+  
+  
+  
   function gamesarrhelper(e) {
     
-
+    
     if (!e.target.innerHTML.includes("Select...") || !e.target.innerHTML.includes('<div')){
       arr.push(e.target.innerHTML)
+      setGameList(arr)
     }
     else{
       arr = []
+      setGameList(arr)
     }
     console.log(arr)
-    setGameList(arr)
+    return arr
+    
   }
 
   const classes = useStyles()
