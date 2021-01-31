@@ -50,7 +50,7 @@ export default function ButtonAppBar() {
 
     return (
         <div className={classes.root}>
-            <AppBar position="static" className={classes.appbar}>
+            <AppBar position="fixed" className={classes.appbar}>
                 <ToolBar className={classes.appbarWrapper}>
                     <h1 className={classes.appbarTitle}>
                         ringer<span className={classes.titleColor}>.gg</span>
