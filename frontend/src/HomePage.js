@@ -7,6 +7,12 @@ export default function HomePage() {
     return (
 
         <div>
+        <div styles={{textAlign: 'center',justify: 'center'}}>
+            
+        </div>
+
+        <div>
+            
             <MatchCard/>
             <MatchCard/>
             <MatchCard/>
@@ -14,6 +20,7 @@ export default function HomePage() {
             <MatchCard/>
             <MatchCard/>
             <MatchCard/>
+        </div>
         </div>
     )
 

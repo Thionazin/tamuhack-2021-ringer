@@ -122,7 +122,7 @@ export default function MatchCard() {
         }).then((res) => console.log(res));
     };
 
-    let category = 'chill'
+    let category = 'Competitive'
 
     
 
@@ -143,11 +143,10 @@ export default function MatchCard() {
                     </IconButton>
                 }
                 title={matchedCard.username}
-                subheader="99% match"
                 />
                 <CardMedia
                 className={classes.media}
-                image="/static/images/cards/paella.jpg"
+                image="./img/halo.png"
                 title="Paella dish"
                 />
                 <CardContent>

@@ -7,6 +7,7 @@ import RegisterPage from "./RegisterPage";
 import Header from "./Header";
 import HomePage from "./HomePage";
 import LandingPage from "./LandingPage";
+import ProfilePage from './Profile'
 
 export default function App() {
   return (
@@ -17,6 +18,7 @@ export default function App() {
           <Route exact path="/home" component={HomePage} />
           <Route exact path="/login" component={LoginPage} />
           <Route exact path='/register' component={RegisterPage}/>
+          <Route exact path='/profile' component={ProfilePage}/>
         </Switch>
     </Router>
   );

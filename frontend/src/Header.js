@@ -52,7 +52,7 @@ export default function ButtonAppBar() {
         <div className={classes.root}>
             <AppBar position="fixed" className={classes.appbar}>
                 <ToolBar className={classes.appbarWrapper}>
-                    <h1 className={classes.appbarTitle}>
+                    <h1 href='/home' className={classes.appbarTitle}>
                         ringer<span className={classes.titleColor}>.gg</span>
                     </h1>
                     <Button variant='contained' className={classes.button} href='/login'>
@@ -61,7 +61,7 @@ export default function ButtonAppBar() {
                     <Button variant='contained' className={classes.button} href='/register'>
                         Register
                     </Button>
-                    <Button variant='contained' className={classes.button} onClick={getUser}>Get User</Button>
+                    <Button variant='contained' className={classes.button} href='/profile' onClick={getUser}>Profile</Button>
                 </ToolBar>
             </AppBar>
         </div>
