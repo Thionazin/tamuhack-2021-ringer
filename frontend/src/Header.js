@@ -5,6 +5,7 @@ import ToolBar from '@material-ui/core/Toolbar';
 import Button from '@material-ui/core/Button';
 import Axios from 'axios';
 import './Header.css';
+import video from './background.mp4'
 
 
 const useStyles = makeStyles((theme) => ({
@@ -64,6 +65,9 @@ function ButtonAppBar() {
                     <Button variant='contained' className={classes.button} onClick={getUser}>Get User</Button>
                 </ToolBar>
             </AppBar>
+            <video autoPlay loop muted id='video'>
+                <source src={video} type='video/mp4'/>
+            </video>
         </div>
     );
 };
