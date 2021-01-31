@@ -4,6 +4,7 @@ import AppBar from '@material-ui/core/AppBar';
 import ToolBar from '@material-ui/core/Toolbar';
 import Button from '@material-ui/core/Button';
 import Axios from 'axios';
+import './Header.css';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -13,6 +14,7 @@ const useStyles = makeStyles((theme) => ({
     appbarWrapper: {
         width: '80%',
         margin: '0 auto',
+        fontFamily: 'IBM Plex Mono',
     },
     appbar: {
         backgroundColor: '#000',
@@ -23,7 +25,7 @@ const useStyles = makeStyles((theme) => ({
     },
     appbarTitle: {
         flexGrow: 1,
-        fontSize: '2.5rem',
+        fontSize: '2.75rem',
     },
     button: {
         color: '#000',
