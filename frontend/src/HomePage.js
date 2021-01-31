@@ -42,7 +42,10 @@ function ButtonAppBar() {
                 Ringer
                 </Typography>
                 <Button color="inherit">
-                <Link to='/login'>Login</Link>
+                    <Link to='/login'>Login</Link>
+                </Button>
+                <Button color='inherit'>
+                    <Link to='register'>Register</Link>
                 </Button>
                 <Button onClick={getUser}>Get User</Button>
             </ToolBar>
