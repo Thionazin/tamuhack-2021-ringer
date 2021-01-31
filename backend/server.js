@@ -144,6 +144,22 @@ app.get("/get_a_profile", (req, res) => {
   });
 });
 
+app.get("/getRandomProfile", (req,res)=>{
+
+  User.count().exec(function (err, count) {
+
+    // Get a random entry
+    var random = Math.floor(Math.random() * count)
+    // Again query all users but only fetch one offset by our random #
+    User.findOne().skip(random).exec(
+      function (err, result) {
+        res.send(result)
+        console.log(result) 
+      })
+  })
+
+
+})
 app.post("/swipe_yes", (req, res) => {
   if(req.user) {
     User.findOne({ username: req.body.otheruser }, async (err, doc) => {

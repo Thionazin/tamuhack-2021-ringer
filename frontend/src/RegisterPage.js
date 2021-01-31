@@ -43,7 +43,7 @@ function RegisterPage() {
     console.log(res)
     if (res.data=="User Created") {
       console.log(gameList)
-      history.push('/')
+      history.push('/home')
     }
     else if (res.data=="User Already Exists") {
       console.log('That user already exists')
@@ -93,7 +93,7 @@ function RegisterPage() {
     
     
     if (!e.target.innerHTML.includes("Select...") || !e.target.innerHTML.includes('<div')){
-      arr.push(e.target.innerHTML)
+      arr.push(e.target.innerHTML + " ")
       setGameList(arr)
     }
     else{
