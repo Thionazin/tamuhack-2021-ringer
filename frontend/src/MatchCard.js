@@ -66,9 +66,7 @@ export default function MatchCard() {
     const[matched, setmatched] = useState("")
 
 
-    function test() {
-        return (<div>lol</div>)
-    }
+    
     const handleExpandClick = () => {
         setExpanded(!expanded);
     };
@@ -89,19 +87,20 @@ export default function MatchCard() {
         }
         else if(direction==='left') {
             console.log('You swiped:' + direction)
+            //should take them out of the arr or something but no time
         }
         
     }
 
     useEffect(() => {
-        //on mount, get a random user first
+        //on mount, get a user first from the api
         getUser()
         
     },[])
 
     async function getUser() {
         function helper(res){
-            setMatchedCard(res.data)
+            setMatchedCard(res.data) //sets user state to found best match
         }
         await Axios({
             method: "GET",

@@ -43,9 +43,16 @@ export default function ButtonAppBar() {
         }).then((res) => {
           setData(res.data);
           console.log(res.data);
+          return res.data
         });
     };
-
+    const logout = () =>{
+        Axios({
+            method: "POST",
+            withCredentials: true,
+            url: "http://localhost:4000/logout",
+          }).then((res) => console.log(res));
+    }
     const classes = useStyles();
 
     return (
@@ -62,6 +69,7 @@ export default function ButtonAppBar() {
                         Register
                     </Button>
                     <Button variant='contained' className={classes.button} href='/profile' onClick={getUser}>Profile</Button>
+                    <Button variant='contained' className={classes.button} onClick={logout}>Profile</Button>
                 </ToolBar>
             </AppBar>
         </div>

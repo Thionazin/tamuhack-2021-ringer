@@ -1,7 +1,7 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import matched from matchCard.js
-
+import matched from 'matchCard.js'
+import getUser from './ButtonAppBar'
 const useStyles = makeStyles((theme) => ({
     container: {
         position: 'flex',
@@ -16,7 +16,9 @@ const useStyles = makeStyles((theme) => ({
         color: '#f00'
     },
 }));
-let uname = matched.username
+let uname = getUser.username
+
+//console.log(matched[0])
 export default function ProfilePage() {
     const classes = useStyles();
     return (
@@ -25,6 +27,7 @@ export default function ProfilePage() {
                 <h1 className={classes.text}>
                     Welcome Back, {uname}
                 </h1>
+                
                 <ul>
                     <li>
                         <p>Stephen</p>
