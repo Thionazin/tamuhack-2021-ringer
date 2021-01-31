@@ -1,57 +1,48 @@
-import React,{useState} from 'react';
+import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import AppBar from '@material-ui/core/AppBar';
-import ToolBar from '@material-ui/core/Toolbar';
+import Card from '@material-ui/core/Card';
+import CardActions from '@material-ui/core/CardActions';
+import CardContent from '@material-ui/core/CardContent';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
-import { Link } from 'react-router-dom'
-import Axios from 'axios'
+import Grid from '@material-ui/core/Grid';
 
 
 const useStyles = makeStyles((theme) => ({
     root: {
-        flexGrow: 1,
-    },
-    menuButton: {
-        marginRight: theme.spacing(2),
+        maxWidth: 256,
     }, 
-    title: {
-        flexGrow: 1,
+    titleCard: {
+        fontSize: 14,
     },
 }));
 
-function ButtonAppBar() {
-    const [data, setData] = useState(null);
-    const getUser = () => {
-        Axios({
-          method: "GET",
-          withCredentials: true,
-          url: "http://localhost:4000/get_self",
-        }).then((res) => {
-          setData(res.data);
-          console.log(res.data);
-        });
-    };
-
+export default function SimpleCard() {
     const classes = useStyles();
 
-    return (<div className={classes.root}>
-        <AppBar position="static">
-            <ToolBar>
-                <Typography variant="h6" className={classes.title}>
-                Ringer
-                </Typography>
-                <Button color="inherit">
-                    <Link to='/login'>Login</Link>
-                </Button>
-                <Button color='inherit'>
-                    <Link to='register'>Register</Link>
-                </Button>
-                <Button onClick={getUser}>Get User</Button>
-            </ToolBar>
-        </AppBar>
-    </div>);
+    return (
+        <Grid container alignItems='center' justify='center'>
+            <Card className={classes.rootCard} variant='elevation'>
+                <CardContent>
+                    <Typography className={classes.titleCard} color="textSecondary" gutterBottom>
+                        word of the day
+                    </Typography>
+                    <Typography variant="h5" component="h2">
+                        benevolent
+                    </Typography>
+                    <Typography className={classes.pos} color="textSecondary">
+                        adjective
+                    </Typography>
+                    <Typography variant="body2" component="p">
+                        well meaning and kind.
+                        <br />
+                        {'"a benovelent smile"'}
+                    </Typography>
+                </CardContent>
+                <CardActions>
+                    <Button size="small">Learn More</Button>
+                </CardActions>
+            </Card>
+        </Grid>
+    );
 };
-
-export default ButtonAppBar
-
