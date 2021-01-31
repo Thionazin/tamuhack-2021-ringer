@@ -63,6 +63,7 @@ export default function MatchCard() {
     const classes = useStyles();
     const [expanded, setExpanded] = React.useState(false);
     const [matchedCard, setMatchedCard] = useState({username:'placeholder'});
+    const[matched, setmatched] = useState("")
 
 
     function test() {
@@ -77,7 +78,7 @@ export default function MatchCard() {
     
     const onCardLeftScreen = (myIdentifier) => {
         console.log(myIdentifier + ' left the screen')
-        getRandomUser()
+        getUser()
         forceUpdate()
     }
 
@@ -94,18 +95,18 @@ export default function MatchCard() {
 
     useEffect(() => {
         //on mount, get a random user first
-        getRandomUser()
+        getUser()
         
     },[])
 
-    async function getRandomUser() {
+    async function getUser() {
         function helper(res){
             setMatchedCard(res.data)
         }
         await Axios({
             method: "GET",
             withCredentials: true,
-            url: "http://localhost:4000/getRandomProfile",
+            url: "http://localhost:4000/get_a_profile",
         }).then((res) => helper(res));
     }
 
@@ -119,7 +120,7 @@ export default function MatchCard() {
           },
           withCredentials: true,
           url: "http://localhost:4000/swipe_yes",
-        }).then((res) => console.log(res));
+        }).then((res) => setmatched(res.username));
     };
 
     let category = 'Competitive'

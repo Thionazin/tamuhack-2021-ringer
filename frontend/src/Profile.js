@@ -1,6 +1,6 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-
+import matched from matchCard.js
 
 const useStyles = makeStyles((theme) => ({
     container: {
@@ -16,7 +16,7 @@ const useStyles = makeStyles((theme) => ({
         color: '#f00'
     },
 }));
-let uname = user.name
+let uname = matched.username
 export default function ProfilePage() {
     const classes = useStyles();
     return (
@@ -26,6 +26,12 @@ export default function ProfilePage() {
                     Welcome Back, {uname}
                 </h1>
                 <ul>
+                    <li>
+                        <p>Stephen</p>
+                    </li>
+                    <li>
+                        <p>Matthew</p>
+                    </li>
                     
                 </ul>
             </div>
