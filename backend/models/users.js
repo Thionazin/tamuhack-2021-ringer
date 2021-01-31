@@ -3,6 +3,7 @@ var userSchema = mongoose.Schema({
     username : String,
     password : String,
     name : String,
+    casual_competitive : Number,
     description : String,
     game_list : [String],
     tag_list : [String],

@@ -9,6 +9,7 @@ const session = require("express-session");
 const bodyParser = require("body-parser");
 const app = express();
 const User = require("./models/users");
+const axios = require("axios");
 //----------------------------------------- END OF IMPORTS---------------------------------------------------
 
 mongoose.connect(
@@ -120,12 +121,27 @@ app.post("/update_profile", (req, res) => {
 
 //connecting with others routes
 app.get("/get_a_profile", (req, res) => {
-  User.find({} , (err, users) => {
-    if(err) console.log(err);
-    users.map(user => {
-      //Do somethign with the user
-    })
-  })
+  User.findOne({ username: req.user.username }, async (err, doc) => {
+    if (err) throw err;
+    if (!doc) res.send("User doesn't exist");
+    if (doc) {
+      User.find({} , (err, users) => {
+        if(err) console.log(err);
+        users.map(user => {
+          axios.post('http://senhehao.com/tempapi/bruhai', {
+            games1: doc.game_list,
+            games2: user.game_list,
+            desc1: doc.description,
+            desc2: user.description,
+          }).then((ress) => {
+            if(ress.body.isMatch) {
+              res.send(user);
+            }
+          })
+        })
+      })
+    }
+  });
 });
 
 app.post("/swipe_yes", (req, res) => {
@@ -134,7 +150,7 @@ app.post("/swipe_yes", (req, res) => {
       if (err) throw err;
       if (!doc) res.send("User doesn't exist. You should never see this message");
       if (doc) {
-        if (doc.request_ids.contain(req.user.username)) {
+        if (doc.request_ids.includes(req.user.username)) {
           doc.connected_ids.push(req.user.username);
           User.findOne({username: req.user.username}, async (err, profile) => {
             if (err) throw err;
