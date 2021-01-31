@@ -23,10 +23,14 @@ module.exports = function (passport) {
   passport.serializeUser((user, cb) => {
     cb(null, user.id);
   });
+
+  //to access more user information, add it here
   passport.deserializeUser((id, cb) => {
     User.findOne({ _id: id }, (err, user) => {
       const userInformation = {
         username: user.username,
+        description: user.description,
+        games: user.game_list,
       };
       cb(err, userInformation);
     });

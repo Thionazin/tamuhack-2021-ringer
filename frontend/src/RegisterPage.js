@@ -15,12 +15,16 @@ import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import { useHistory } from "react-router-dom";
+import { MenuItem } from "@material-ui/core";
+import Select from 'react-select'
+import SelectGamesDropDown from './SelectGamesDropDown'
 
 function RegisterPage() {
   const [registerUsername, setRegisterUsername] = useState("");
   const [registerPassword, setRegisterPassword] = useState("");
+  const [description, setDescription] = useState("");
+  const [gameList, setGameList] = useState([]);
   const history = useHistory();
-
   function Copyright() {
     return (
       <Typography variant="body2" color="textSecondary" align="center">
@@ -34,9 +38,11 @@ function RegisterPage() {
     );
   }
 
+  
   function helper(res) {
     console.log(res)
     if (res.data=="User Created") {
+      console.log(gameList)
       history.push('/')
     }
     else if (res.data=="User Already Exists") {
@@ -53,6 +59,8 @@ function RegisterPage() {
         data: {
           username: registerUsername,
           password: registerPassword,
+          description: description,
+          game_list: gameList
         },
         withCredentials: true,
         url: "http://localhost:4000/register",
@@ -78,6 +86,19 @@ function RegisterPage() {
       margin: theme.spacing(3, 0, 2),
     },
   }));
+  let arr = []
+  function gamesarrhelper(e) {
+    
+
+    if (!e.target.innerHTML.includes("Select...") || !e.target.innerHTML.includes('<div')){
+      arr.push(e.target.innerHTML)
+    }
+    else{
+      arr = []
+    }
+    console.log(arr)
+    setGameList(arr)
+  }
 
   const classes = useStyles()
   return (
@@ -131,6 +152,26 @@ function RegisterPage() {
                 onChange={(e)=>{setRegisterPassword(e.target.value)}}
               />
             </Grid>
+            
+            <Grid item xs={12}>
+              <TextField
+              variant="outlined"
+              required
+              fullWidth
+              name="description"
+              label="Tell us a little about youself!"
+              type="description"
+              id="description"
+              autoComplete="description"
+              onChange={(e)=>{setDescription(e.target.value)}}
+              
+              
+              />
+            </Grid>
+            <Grid item xs={12} onClick={(e)=>gamesarrhelper(e)}>
+              <SelectGamesDropDown />
+            </Grid>
+          
           </Grid>
           <Button
             type="button"

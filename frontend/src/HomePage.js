@@ -28,8 +28,8 @@ function ButtonAppBar() {
           withCredentials: true,
           url: "http://localhost:4000/get_self",
         }).then((res) => {
-          setData(res.data);
-          console.log(res.data);
+          setData(res.data); //res.data
+          console.log(res.data); //res.data
         });
     };
 
