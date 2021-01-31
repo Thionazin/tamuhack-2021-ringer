@@ -5,7 +5,7 @@ import ToolBar from '@material-ui/core/Toolbar';
 import Button from '@material-ui/core/Button';
 import Axios from 'axios';
 import './Header.css';
-import video from './background.mp4'
+
 
 
 const useStyles = makeStyles((theme) => ({
@@ -15,7 +15,6 @@ const useStyles = makeStyles((theme) => ({
     appbarWrapper: {
         width: '80%',
         margin: '0 auto',
-        fontFamily: 'IBM Plex Mono',
     },
     appbar: {
         backgroundColor: '#000',
@@ -34,7 +33,7 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-function ButtonAppBar() {
+export default function ButtonAppBar() {
     const [data, setData] = useState(null);
     const getUser = () => {
         Axios({
@@ -65,12 +64,6 @@ function ButtonAppBar() {
                     <Button variant='contained' className={classes.button} onClick={getUser}>Get User</Button>
                 </ToolBar>
             </AppBar>
-            <video autoPlay loop muted id='video'>
-                <source src={video} type='video/mp4'/>
-            </video>
         </div>
     );
 };
-
-export default ButtonAppBar
-
