@@ -15,21 +15,21 @@ const useStyles = makeStyles((theme) => ({
         color: '#f00'
     },
 }));
-
+let uname = 'Keegan'
 export default function ProfilePage() {
     const classes = useStyles();
     return (
         <div>
             <div className={classes.container}>
                 <h1 className={classes.text}>
-                    Welcome Back
+                    Welcome Back, {uname}
                 </h1>
                 <ul>
                     <li>
-                        <p>Jimmy Johnson</p>
+                        <p>Stephen</p>
                     </li>
                     <li>
-                        Mark
+                        <p>Matthew</p>
                     </li>
                 </ul>
             </div>

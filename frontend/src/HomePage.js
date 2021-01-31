@@ -18,8 +18,6 @@ export default function HomePage() {
             <MatchCard/>
             <MatchCard/>
             <MatchCard/>
-            <MatchCard/>
-            <MatchCard/>
         </div>
         </div>
     )
